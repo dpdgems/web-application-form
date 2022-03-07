@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="card shadow h-100">
+        <div class="card-body">
+            <h2 class="card-title">เบิกค่าใช้จ่าย</h2>
+            <hr>
+            <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <!-- ประเภทค่าใช้จ่าย -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <label>ประเภทค่าใช้จ่าย: <label class="text-danger">*</label></label>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-7 text-start">
+                            <mat-form-field appearance="outline">
+                                <mat-label>เลือกค่าใช้จ่าย</mat-label>
+                                <mat-select formControlName="selected" (selectionChange)="onExpenseChange($event)"
+                                    required>
+                                    <mat-option *ngFor="let leave of typeofExpense" [value]="leave.id">
+                                        {{leave.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- วันที่ -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <label>วันที่: <label class="text-danger">*</label></label>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-7 text-start">
+                            <mat-form-field appearance="outline">
+                                <mat-label>เลือกวันที่</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="date" (focus)="picker.open()"
+                                    (click)="picker.open()" readonly />
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- จำนวนเงิน -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <label>จำนวนเงิน: <label class="text-danger">*</label></label>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-7 text-start">
+                            <mat-form-field appearance="outline">
+                                <input matInput formControlName="amount" (keypress)="press($event)"
+                                    (change)="transformToDecimal($event)" autocomplete="off" />
+                                <span matSuffix>บาท</span>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- ไฟล์ -->
+                    <div class="row align-items-baseline mb-3">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <label>อัพโหลดไฟล์: <label class="text-danger">*</label></label>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-7 text-start">
+                            <div class="row">
+                                <div class="col-12 col-md-3 col-lg-3">
+                                    <button type="button" class="btn btn-outline-primary"
+                                        (click)="fileUpload.click()">เลือกไฟล์</button>
+                                    <input type="file" (change)="getFile($event)" accept="image/*,.pdf" #fileUpload
+                                        multiple hidden />
+                                </div>
+                                <div class="col-12 col-md-9 col-lg-9">
+                                    <div class="d-flex flex-column" *ngFor="let file of files">{{file?.name}}
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- หมายเหตุ -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <label>หมายเหตุ: <label *ngIf="checkRemarkRequired()" class="text-danger">*</label></label>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-7 text-start">
+                            <mat-form-field appearance="outline">
+                                <textarea matInput formControlName="remark"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- ปุ่ม -->
+                    <footer class="d-flex justify-content-center">
+                        <button type="submit" class="col-6 col-md-3 col-lg-2 me-3 btn"
+                            [ngClass]="{'btn-primary': form.valid && files?.length>0, 'disabled': !form.valid || files?.length<=0}">บันทึก</button>
+                        <button type="button" class="col-6 col-md-3 col-lg-2 ms-3 btn btn-danger"
+                            (click)="onCancel()">ยกเลิก</button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

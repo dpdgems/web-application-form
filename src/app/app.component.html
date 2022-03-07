@@ -1,0 +1,14 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav id="sidenav" #sidenav mode="side" [(opened)]="opened">
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="toggle">
+      <fa-icon [icon]="faBars" [border]="true" [classes]="['toggle-icon']" (click)="sidenav.toggle()"></fa-icon>
+    </div>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

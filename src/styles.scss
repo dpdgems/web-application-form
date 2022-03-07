@@ -1,0 +1,200 @@
+/* You can add global styles to this file, and also import other style files */
+@import './app/shared/variables.scss';
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-size: 1rem !important;
+    font-family: Prompt, "Arial", sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    color: $navy;
+    margin: 0 !important;
+}
+
+mat-sidenav {
+    width: 150px;
+    max-width: 150px;
+    background-color: $sidenav !important;
+}
+
+mat-form-field {
+    width: 100%;
+    font-family: Prompt, "Arial", sans-serif !important;
+}
+
+table {
+    width: 100%;
+}
+
+svg {
+    width: 2rem !important;
+    max-width: 2rem !important;
+}
+
+.sidenav-container {
+    height: 100% !important;
+    max-height: 100% !important;
+}
+
+.main-content {
+    width: 100%;
+    max-width: 100%;
+}
+
+.container {
+    padding: 20px;
+}
+
+/* toggle */
+.toggle {
+    z-index: 2;
+    position: sticky;
+    left: 0px;
+    top: 0px;
+    width: 30px;
+    max-width: 30px;
+}
+
+.toggle-icon {
+    cursor: pointer;
+    border-color: $gray;
+    background-color: $lightgray
+}
+
+.toggle-icon:hover {
+    background-color: $gray
+}
+
+/* mat-form-field */
+.mat-form-field-wrapper {
+    padding: 0px;
+}
+
+.mat-form-field-suffix {
+    top: 0 !important;
+}
+
+/* mat-tooltip */
+.mat-tooltip {
+    font-size: 0.75rem !important;
+}
+
+/* mat-table */
+.mat-header-row {
+    background-color: $lightblue;
+}
+
+.mat-header-row>.mat-header-cell {
+    font-size: 1rem !important;
+    font-weight: bold;
+}
+
+td.mat-cell:not(:first-of-type):not(:last-of-type) {
+    padding: 0 5px;
+}
+
+/* mat-paginator */
+.mat-paginator-range-label {
+    width: 100%;
+    margin: auto !important;
+    text-align: center;
+}
+
+.mat-paginator-range-actions {
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.mat-paginator-page-size {
+    margin-right: 0px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* search in files-list */
+.label-on-search {
+    width: 100%;
+    max-width: 100%;
+}
+
+.input-on-search {
+    width: 100%;
+    max-width: 100%;
+}
+
+.round-icon {
+    height: auto;
+    cursor: pointer;
+    border-radius: 100%;
+    padding: 5px;
+    transition: transform .5s;
+}
+
+.search-icon {
+    @extend .round-icon;
+    border: solid 0.08em $lightgray;
+    background-color: $lightblue;
+    color: #fff;
+}
+
+.search-icon:hover {
+    transform: scale(1.10);
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+    mat-sidenav {
+        width: 200px;
+        max-width: 200px;
+    }
+
+    .mat-paginator-range-label {
+        width: auto;
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    mat-sidenav {
+        width: 200px;
+        max-width: 200px;
+    }
+
+    .mat-paginator-range-label {
+        width: auto;
+        margin: 0 32px 0 24px !important;
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    mat-sidenav {
+        width: 200px;
+        max-width: 200px;
+    }
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+    mat-sidenav {
+        width: 250px;
+        max-width: 250px;
+    }
+}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {
+    mat-sidenav {
+        width: 300px;
+        max-width: 300px;
+    }
+}

@@ -1,0 +1,13 @@
+<div class="top-menu">
+  <img src="favicon.ico">
+  <h2 class="text-center">เมนู</h2>
+</div>
+<div class="menu">
+  <ul>
+    <li *ngFor="let menu of menus">
+      <a [routerLink]="menu.path" [routerLinkActive]="['router-link-active']">
+        <p>{{menu?.name}}</p>
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,83 @@
+<div class="container">
+    <div class="card shadow h-100">
+        <div class="card-body">
+            <h2 class="card-title">ลางาน</h2>
+            <hr>
+            <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <!-- ประเภทการลา -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <label>ประเภทการลา: <label class="text-danger">*</label></label>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-7 text-start">
+                            <mat-form-field appearance="outline">
+                                <mat-label>เลือกประเภทการลา</mat-label>
+                                <mat-select formControlName="selected" (selectionChange)="onLeaveChange($event)"
+                                    required>
+                                    <mat-option *ngFor="let leave of typeofLeave" [value]="leave.id">
+                                        {{leave.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- วันที่ -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <label>วันที่: <label class="text-danger">*</label></label>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-7 text-start">
+                            <mat-form-field appearance="outline">
+                                <mat-label>วันที่เริ่มต้น-วันที่สิ้นสุด</mat-label>
+                                <mat-date-range-input [rangePicker]="picker">
+                                    <input matStartDate formControlName="startdate" (focus)="picker.open()"
+                                        (click)="picker.open()" readonly>
+                                    <input matEndDate formControlName="enddate" (focus)="picker.open()"
+                                        (click)="picker.open()" (dateChange)="onDateChange()" readonly>
+                                </mat-date-range-input>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
+
+                                <mat-error *ngIf="form.controls.startdate.hasError('matStartDateInvalid')">
+                                    วันที่เริ่มต้นไม่ถูกต้อง</mat-error>
+                                <mat-error *ngIf="form.controls.enddate.hasError('matEndDateInvalid')">
+                                    วันที่สิ้นสุดไม่ถูกต้อง</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- จำนวนรวม -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <label>จำนวนรวม: </label>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-7 text-start">
+                            <mat-form-field appearance="outline">
+                                <input matInput disabled value="{{form?.value?.amount}}">
+                                <span matSuffix>วัน</span>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- หมายเหตุ -->
+                    <div class="row align-items-center mb-3">
+                        <div class="col-12 col-md-4 col-lg-3">
+                            <label>หมายเหตุ: </label>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-7 text-start">
+                            <mat-form-field appearance="outline">
+                                <textarea matInput formControlName="remark"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- ปุ่ม -->
+                    <footer class="d-flex justify-content-center">
+                        <button type="submit" class="col-6 col-md-3 col-lg-2 me-3 btn"
+                            [ngClass]="{'btn-primary': form.valid, 'disabled': !form.valid}">บันทึก</button>
+                        <button type="button" class="col-6 col-md-3 col-lg-2 ms-3 btn btn-danger"
+                            (click)="onCancel()">ยกเลิก</button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
