@@ -1,5 +1,5 @@
 # Web-Application-Form
-Example of a web application form using [Angular framework](https://angular.io/), [Material] and [Bootstrap]
+Example of a web application form using [Angular framework], [Material] and [Bootstrap]
 
 # Getting Started
 ### Prerequisites:
